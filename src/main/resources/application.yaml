@@ -1,4 +1,7 @@
 spring:
+  flyway:
+    out-of-order: true
+
   application:
     name: pnudev-lms
   datasource:
