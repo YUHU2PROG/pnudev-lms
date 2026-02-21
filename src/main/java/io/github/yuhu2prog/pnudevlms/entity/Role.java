@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -25,5 +25,12 @@ public class Role {
     private String title;
 
     @OneToMany(mappedBy = "role")
-    private List<User> users;
+    private Set<User> users;
+
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
+    private Set<Permission> permissions;
 }
