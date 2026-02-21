@@ -2,6 +2,7 @@ package io.github.yuhu2prog.pnudevlms.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -27,12 +28,16 @@ public class User {
     private String email;
 
     @NotBlank
+    @Size(min = 8, max = 128)
     @Column(name = "password", columnDefinition = "text")
     private String password;
 
-    // todo role_id
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @NotBlank
     @Column(name = "avatar_image_path", columnDefinition = "text")
     private String avatarImagePath;
+
 }
