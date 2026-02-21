@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,7 +12,7 @@ import java.util.Set;
 @ToString
 @Getter
 @Setter
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Permission {
@@ -20,14 +21,18 @@ public class Permission {
     @Column(name = "id")
     private Long id;
 
+    @NonNull
     @NotBlank
-    @Column(name = "name", length = 50)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
+    @NonNull
     @NotBlank
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
+    @Setter(AccessLevel.NONE)
+    @Builder.Default
     @ManyToMany(mappedBy = "permissions")
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 }

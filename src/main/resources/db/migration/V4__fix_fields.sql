@@ -1,0 +1,20 @@
+ALTER TABLE permissions
+    ALTER COLUMN description SET NOT NULL;
+
+ALTER TABLE users
+    ALTER COLUMN email SET NOT NULL;
+
+ALTER TABLE permissions
+    ALTER COLUMN name SET NOT NULL;
+
+ALTER TABLE users
+    ALTER COLUMN name SET NOT NULL;
+
+ALTER TABLE users
+    ALTER COLUMN password SET NOT NULL;
+
+ALTER TABLE users
+    ALTER COLUMN role_id SET NOT NULL;
+
+ALTER TABLE roles
+    ALTER COLUMN title SET NOT NULL;
