@@ -34,6 +34,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
+    @ToString.Exclude
     private Role role;
 
     @NotBlank
