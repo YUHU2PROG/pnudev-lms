@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id
@@ -44,19 +44,19 @@ public class User {
     @Column(name = "avatar_image_path", columnDefinition = "text")
     private String avatarImagePath;
 
-    @Setter(AccessLevel.NONE)
+    @NotNull
     @Builder.Default
     @OneToMany(mappedBy = "owner")
     @ToString.Exclude
     private Set<Class> ownClasses = new HashSet<>();
 
-    @Setter(AccessLevel.NONE)
+    @NotNull
     @Builder.Default
     @ManyToMany(mappedBy = "participants")
     @ToString.Exclude
     private Set<Class> classes = new HashSet<>();
 
-    @Setter(AccessLevel.NONE)
+    @NotNull
     @Builder.Default
     @OneToMany(mappedBy = "owner")
     @ToString.Exclude

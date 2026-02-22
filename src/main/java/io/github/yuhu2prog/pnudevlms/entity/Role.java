@@ -2,6 +2,7 @@ package io.github.yuhu2prog.pnudevlms.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
@@ -13,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 public class Role {
     @Id
@@ -25,13 +26,13 @@ public class Role {
     @Column(name = "title", length = 50, nullable = false)
     private String title;
 
-    @Setter(AccessLevel.NONE)
+    @NotNull
     @Builder.Default
     @OneToMany(mappedBy = "role")
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 
-    @Setter(AccessLevel.NONE)
+    @NotNull
     @Builder.Default
     @ManyToMany
     @JoinTable(

@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 public class Class {
     @Id
@@ -42,7 +42,7 @@ public class Class {
     @Column(name = "invite_code", unique = true)
     private String inviteCode;
 
-    @Setter(AccessLevel.NONE)
+    @NotNull
     @Builder.Default
     @ManyToMany
     @JoinTable(
