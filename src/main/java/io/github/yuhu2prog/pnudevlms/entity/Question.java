@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "questions")
 @ToString
@@ -38,4 +41,10 @@ public class Question {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, columnDefinition = "question_type DEFAULT 'SINGLE_CHOICE'")
     private QuestionType type = QuestionType.SINGLE_CHOICE;
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "question")
+    @ToString.Exclude
+    private Set<AnswerOption> answerOptions = new HashSet<>();
 }
