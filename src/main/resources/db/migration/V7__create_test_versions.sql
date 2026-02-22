@@ -1,0 +1,11 @@
+CREATE SEQUENCE IF NOT EXISTS test_versions_seq START WITH 1 INCREMENT BY 50;
+
+CREATE TABLE test_versions
+(
+    id      BIGINT NOT NULL,
+    test_id BIGINT NOT NULL,
+    CONSTRAINT pk_test_versions PRIMARY KEY (id)
+);
+
+ALTER TABLE test_versions
+    ADD CONSTRAINT FK_TEST_VERSIONS_ON_TEST FOREIGN KEY (test_id) REFERENCES tests (id);

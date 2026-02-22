@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "tests")
 @ToString
@@ -30,4 +33,10 @@ public class Test {
 
     @Column(name = "description")
     private String description;
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "test")
+    @ToString.Exclude
+    private Set<TestVersion> testVersions = new HashSet<>();
 }
