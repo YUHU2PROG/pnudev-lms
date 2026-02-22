@@ -52,4 +52,10 @@ public class Class {
     )
     @ToString.Exclude
     private Set<User> participants = new HashSet<>();
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "assignment_class")
+    @ToString.Exclude
+    private Set<TestAssignment> testAssignments = new HashSet<>();
 }

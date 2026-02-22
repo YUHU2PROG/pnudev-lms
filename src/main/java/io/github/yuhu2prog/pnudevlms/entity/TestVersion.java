@@ -31,4 +31,9 @@ public class TestVersion {
     @OneToMany(mappedBy = "testVersion")
     @ToString.Exclude
     private Set<Question> questions = new HashSet<>();
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "testVersion")
+    private Set<TestAssignment> testAssignments = new HashSet<>();
 }
