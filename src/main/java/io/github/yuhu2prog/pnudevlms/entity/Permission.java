@@ -21,12 +21,10 @@ public class Permission {
     @Column(name = "id")
     private Long id;
 
-    @NonNull
     @NotBlank
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @NonNull
     @NotBlank
     @Column(name = "description", nullable = false)
     private String description;

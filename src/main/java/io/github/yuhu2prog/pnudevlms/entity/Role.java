@@ -21,7 +21,6 @@ public class Role {
     @Column(name = "id")
     private Long id;
 
-    @NonNull
     @NotBlank
     @Column(name = "title", length = 50, nullable = false)
     private String title;

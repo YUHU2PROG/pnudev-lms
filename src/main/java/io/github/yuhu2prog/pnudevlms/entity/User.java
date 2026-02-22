@@ -20,23 +20,19 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @NonNull
     @NotBlank
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @NonNull
     @NotBlank
     @Column(name = "email", columnDefinition = "text", nullable = false)
     private String email;
 
-    @NonNull
     @NotBlank
     @Size(min = 8, max = 128)
     @Column(name = "password", columnDefinition = "text", nullable = false)
     private String password;
 
-    @NonNull
     @NotNull
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
