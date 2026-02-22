@@ -55,4 +55,10 @@ public class User {
     @ManyToMany(mappedBy = "participants")
     @ToString.Exclude
     private Set<Class> classes = new HashSet<>();
+
+    @Setter(AccessLevel.NONE)
+    @Builder.Default
+    @OneToMany(mappedBy = "owner")
+    @ToString.Exclude
+    private Set<Test> tests = new HashSet<>();
 }
