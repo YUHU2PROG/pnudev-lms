@@ -34,6 +34,7 @@ public class Role {
     @Builder.Default
     @ManyToMany
     @JoinTable(
+            name = "roles_permissions",
             joinColumns = @JoinColumn(name = "role_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "permission_id", nullable = false)
     )

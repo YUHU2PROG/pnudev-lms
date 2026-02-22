@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 @ToString
@@ -25,7 +28,7 @@ public class User {
     private String name;
 
     @NotBlank
-    @Column(name = "email", columnDefinition = "text", nullable = false)
+    @Column(name = "email", columnDefinition = "text", nullable = false, unique = true)
     private String email;
 
     @NotBlank
@@ -41,4 +44,14 @@ public class User {
 
     @Column(name = "avatar_image_path", columnDefinition = "text")
     private String avatarImagePath;
+
+    @Setter(AccessLevel.NONE)
+    @Builder.Default
+    @OneToMany(mappedBy = "owner")
+    private Set<Class> ownClasses = new HashSet<>();
+
+    @Setter(AccessLevel.NONE)
+    @Builder.Default
+    @ManyToMany(mappedBy = "participants")
+    private Set<Class> classes = new HashSet<>();
 }
