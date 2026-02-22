@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "test_versions")
 @ToString
@@ -22,4 +25,10 @@ public class TestVersion {
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
     private Test test;
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "testVersion")
+    @ToString.Exclude
+    private Set<Question> questions = new HashSet<>();
 }
