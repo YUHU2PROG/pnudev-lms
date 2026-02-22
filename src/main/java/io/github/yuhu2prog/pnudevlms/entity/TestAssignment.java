@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tests_assignments")
@@ -31,14 +33,20 @@ public class TestAssignment {
     private Class assignment_class;
 
     @NotNull
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date", nullable = false, columnDefinition = "timestamptz")
     private Instant startDate;
 
     @NotNull
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date", nullable = false, columnDefinition = "timestamptz")
     private Instant endDate;
 
     @NotNull
     @OneToOne(mappedBy = "testAssignment")
     private Configuration configuration;
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "testAssignment")
+    @ToString.Exclude
+    private Set<AttemptResult> attemptResults = new HashSet<>();
 }

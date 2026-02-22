@@ -47,4 +47,10 @@ public class Question {
     @OneToMany(mappedBy = "question")
     @ToString.Exclude
     private Set<AnswerOption> answerOptions = new HashSet<>();
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "question")
+    @ToString.Exclude
+    private Set<Session> sessions = new HashSet<>();
 }

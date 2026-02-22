@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "answer_options")
 @ToString
@@ -33,4 +36,10 @@ public class AnswerOption {
     @Builder.Default
     @Column(name = "is_correct", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isCorrect = false;
+
+    @NotNull
+    @Builder.Default
+    @ManyToMany(mappedBy = "answerOptions")
+    @ToString.Exclude
+    private Set<AttemptResult> attemptResults = new HashSet<>();
 }

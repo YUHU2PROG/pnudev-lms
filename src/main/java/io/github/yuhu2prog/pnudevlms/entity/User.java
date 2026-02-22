@@ -61,4 +61,10 @@ public class User {
     @OneToMany(mappedBy = "owner")
     @ToString.Exclude
     private Set<Test> tests = new HashSet<>();
+
+    @NotNull
+    @Builder.Default
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private Set<AttemptResult> attemptResults = new HashSet<>();
 }
