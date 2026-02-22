@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class User {
     @Id
@@ -39,7 +39,6 @@ public class User {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
-    @ToString.Exclude
     private Role role;
 
     @Column(name = "avatar_image_path", columnDefinition = "text")
@@ -48,10 +47,12 @@ public class User {
     @Setter(AccessLevel.NONE)
     @Builder.Default
     @OneToMany(mappedBy = "owner")
+    @ToString.Exclude
     private Set<Class> ownClasses = new HashSet<>();
 
     @Setter(AccessLevel.NONE)
     @Builder.Default
     @ManyToMany(mappedBy = "participants")
+    @ToString.Exclude
     private Set<Class> classes = new HashSet<>();
 }

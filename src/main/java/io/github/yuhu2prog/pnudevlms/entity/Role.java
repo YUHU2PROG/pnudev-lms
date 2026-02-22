@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class Role {
     @Id
@@ -28,6 +28,7 @@ public class Role {
     @Setter(AccessLevel.NONE)
     @Builder.Default
     @OneToMany(mappedBy = "role")
+    @ToString.Exclude
     private Set<User> users = new HashSet<>();
 
     @Setter(AccessLevel.NONE)
@@ -38,5 +39,6 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "permission_id", nullable = false)
     )
+    @ToString.Exclude
     private Set<Permission> permissions = new HashSet<>();
 }

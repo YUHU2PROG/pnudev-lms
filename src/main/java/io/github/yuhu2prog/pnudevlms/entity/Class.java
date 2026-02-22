@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class Class {
     @Id
@@ -50,5 +50,6 @@ public class Class {
             joinColumns = @JoinColumn(name = "class_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false)
     )
+    @ToString.Exclude
     private Set<User> participants = new HashSet<>();
 }

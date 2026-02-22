@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class Permission {
     @Id
@@ -32,5 +32,6 @@ public class Permission {
     @Setter(AccessLevel.NONE)
     @Builder.Default
     @ManyToMany(mappedBy = "permissions")
+    @ToString.Exclude
     private Set<Role> roles = new HashSet<>();
 }
