@@ -30,6 +30,7 @@ public class AnswerOption {
     private String imagePath;
 
     @NotNull
+    @Builder.Default
     @Column(name = "is_correct", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isCorrect = false;
 }

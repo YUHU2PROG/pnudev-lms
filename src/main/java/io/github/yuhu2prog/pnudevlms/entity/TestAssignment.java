@@ -37,4 +37,8 @@ public class TestAssignment {
     @NotNull
     @Column(name = "end_date", nullable = false)
     private Instant endDate;
+
+    @NotNull
+    @OneToOne(mappedBy = "testAssignment")
+    private Configuration configuration;
 }
