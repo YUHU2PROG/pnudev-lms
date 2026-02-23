@@ -24,13 +24,13 @@ public class TestAssignment {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "test_version_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "test_version_id")
     private TestVersion testVersion;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "class_id")
     private Class assignment_class;
 
     @NotNull
@@ -42,12 +42,13 @@ public class TestAssignment {
     private Instant endDate;
 
     @NotNull
-    @OneToOne(mappedBy = "testAssignment")
+    @OneToOne(mappedBy = "testAssignment", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            orphanRemoval = true)
     private Configuration configuration;
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "testAssignment")
+    @OneToMany(mappedBy = "testAssignment", orphanRemoval = true)
     @ToString.Exclude
     private Set<AttemptResult> attemptResults = new HashSet<>();
 

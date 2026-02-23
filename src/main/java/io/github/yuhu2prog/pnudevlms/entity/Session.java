@@ -34,12 +34,13 @@ public class Session {
     private Instant startedAt;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "current_question_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "current_question_id")
     private Question question;
 
     @NotNull
-    @OneToOne(mappedBy = "session")
+    @OneToOne(optional = false)
+    @JoinColumn(name = "attempt_result_id")
     private AttemptResult attemptResult;
 
     @Override

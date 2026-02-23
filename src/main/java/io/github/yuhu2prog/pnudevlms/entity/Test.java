@@ -24,8 +24,8 @@ public class Test {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id")
     private User owner;
 
     @NotBlank
@@ -37,7 +37,8 @@ public class Test {
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "test", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<TestVersion> testVersions = new HashSet<>();
 

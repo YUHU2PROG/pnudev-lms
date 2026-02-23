@@ -21,8 +21,8 @@ public class Configuration {
     private Long id;
 
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "test_assignment_id", nullable = false, unique = true)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "test_assignment_id", unique = true)
     private TestAssignment testAssignment;
 
     @NotNull

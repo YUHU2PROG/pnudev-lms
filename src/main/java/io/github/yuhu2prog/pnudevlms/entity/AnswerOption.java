@@ -23,8 +23,8 @@ public class AnswerOption {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "question_id")
     private Question question;
 
     @Column(name = "text")

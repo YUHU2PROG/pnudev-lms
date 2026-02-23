@@ -38,8 +38,8 @@ public class User {
     private String password;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @Column(name = "avatar_image_path", columnDefinition = "text")
@@ -47,7 +47,8 @@ public class User {
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<Class> ownClasses = new HashSet<>();
 
@@ -59,13 +60,15 @@ public class User {
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<Test> tests = new HashSet<>();
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<AttemptResult> attemptResults = new HashSet<>();
 

@@ -24,17 +24,18 @@ public class AttemptResult {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "test_assignment_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "test_assignment_id")
     private TestAssignment testAssignment;
 
-    @OneToOne
-    @JoinColumn(name = "session_id")
+    @NotNull
+    @OneToOne(mappedBy = "attemptResult", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            orphanRemoval = true)
     private Session session;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @NotNull

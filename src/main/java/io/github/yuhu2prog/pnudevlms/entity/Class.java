@@ -24,8 +24,8 @@ public class Class {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id")
     private User owner;
 
     @NotBlank
@@ -45,7 +45,7 @@ public class Class {
 
     @NotNull
     @Builder.Default
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "classes_participants",
             joinColumns = @JoinColumn(name = "class_id", nullable = false),
@@ -56,7 +56,8 @@ public class Class {
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "assignment_class")
+    @OneToMany(mappedBy = "assignment_class", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<TestAssignment> testAssignments = new HashSet<>();
 

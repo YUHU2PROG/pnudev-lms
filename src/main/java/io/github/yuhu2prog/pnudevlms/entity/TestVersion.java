@@ -23,19 +23,21 @@ public class TestVersion {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "test_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "test_id")
     private Test test;
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "testVersion")
+    @OneToMany(mappedBy = "testVersion", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<Question> questions = new HashSet<>();
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "testVersion")
+    @OneToMany(mappedBy = "testVersion", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     private Set<TestAssignment> testAssignments = new HashSet<>();
 
     @Override

@@ -23,8 +23,8 @@ public class Question {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "test_version_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "test_version_id")
     private TestVersion testVersion;
 
     @Column(name = "text")
@@ -45,13 +45,14 @@ public class Question {
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<AnswerOption> answerOptions = new HashSet<>();
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", orphanRemoval = true)
     @ToString.Exclude
     private Set<Session> sessions = new HashSet<>();
 

@@ -29,13 +29,14 @@ public class Role {
 
     @NotNull
     @Builder.Default
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true)
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 
     @NotNull
     @Builder.Default
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_permissions",
             joinColumns = @JoinColumn(name = "role_id", nullable = false),
