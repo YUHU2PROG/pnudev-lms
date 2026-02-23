@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -49,4 +50,16 @@ public class TestAssignment {
     @OneToMany(mappedBy = "testAssignment")
     @ToString.Exclude
     private Set<AttemptResult> attemptResults = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TestAssignment that)) return false;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

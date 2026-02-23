@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -39,4 +40,16 @@ public class Test {
     @OneToMany(mappedBy = "test")
     @ToString.Exclude
     private Set<TestVersion> testVersions = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Test test)) return false;
+        return id != null && Objects.equals(id, test.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

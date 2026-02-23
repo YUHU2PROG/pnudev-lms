@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -25,7 +26,7 @@ public class Class {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
-    public User owner;
+    private User owner;
 
     @NotBlank
     @Column(name = "title", length = 50, nullable = false)
@@ -58,4 +59,16 @@ public class Class {
     @OneToMany(mappedBy = "assignment_class")
     @ToString.Exclude
     private Set<TestAssignment> testAssignments = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Class aClass)) return false;
+        return id != null && Objects.equals(id, aClass.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

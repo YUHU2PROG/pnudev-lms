@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "configurations")
 @ToString
@@ -58,4 +60,16 @@ public class Configuration {
     @Builder.Default
     @Column(name = "allow_navigation_between_questions", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean allowNavigationBetweenQuestions = false;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Configuration that)) return false;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

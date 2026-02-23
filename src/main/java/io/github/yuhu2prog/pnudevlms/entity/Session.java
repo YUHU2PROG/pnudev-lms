@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "sessions")
@@ -40,4 +41,16 @@ public class Session {
     @NotNull
     @OneToOne(mappedBy = "session")
     private AttemptResult attemptResult;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Session session)) return false;
+        return id != null && Objects.equals(id, session.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }
